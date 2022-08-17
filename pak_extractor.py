@@ -15,14 +15,15 @@ fd = open(args.file, 'rb')
 
 
 def read_pak_header(fd) -> dict:
-	""" read_pak_header(fd) -> dict: Reads the stored file headers
-	inside the archive, creating a dictionary of filenames and their respected data lengths
+	""" read_pak_header(fd) -> dict: Reads the stored file headers-
+	inside the archive, creating a dictionary of filenames and their respected data lengths-
 	to correctly read such file's data within the archive (file data chunks are adjacent)
 	"""
 	# Use reverse-engineered method.
 
 	files_metadata   = {}
-	amount_of_files ,= struct.unpack('>h', fd.read(2))
+	amount_of_files ,= struct.unpack('>h', fd.read(2)) # unpacks the one-element tuple (x,)
+       #(amount_of_files, ) = struct.unpack('>h', fd.read(2))
 
 	for _ in range(amount_of_files):
 
